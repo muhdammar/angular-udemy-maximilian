@@ -2,5 +2,12 @@
     <button>
         <img/>
         <!-- output user  -->
+         <!-- <img src="{{ selectedUser.avatar }}" /> -->
+
+         <!-- property binding like this -->
+         <img 
+            [src]="'assets/users/'+ selectedUser.avatar" 
+            [alt]="selectedUser.name"
+         />
         <span>{{ selectedUser.name }}</span>
     </button>

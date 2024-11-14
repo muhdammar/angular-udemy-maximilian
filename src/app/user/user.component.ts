@@ -9,8 +9,8 @@ import { DUMMY_USERS } from '../dummy-users';
 })
 export class UserComponent {
   // "avatar!" <--- this symbol was typescript features to allow the value is set outside this file
-  @Input() avatar!: String;
-  @Input() name!: String;
+  @Input({required: true}) avatar!: String;
+  @Input({required: true}) name!: String;
   /**
    * COMMENT THIS SINCE NO LONGER NEED FOR TUTORIAL 30 ONWARDS
    */

@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, Input, computed } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 @Component({
@@ -8,6 +8,9 @@ import { DUMMY_USERS } from '../dummy-users';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
+  // "avatar!" <--- this symbol was typescript features to allow the value is set outside this file
+  @Input() avatar!: String;
+  @Input() name!: String;
   /**
    * COMMENT THIS SINCE NO LONGER NEED FOR TUTORIAL 30 ONWARDS
    */
@@ -21,7 +24,7 @@ export class UserComponent {
   //   return 'assets/users/'+ this.selectedUser.avatar
   // }
   //another way computed
-  // imagePathComputed = computed(() => 'assets/users/' +this.selectedUser.avatar)
+  imagePathComputed = computed(() => 'assets/users/' +this.avatar)
 
   //events
   onSelectUser() {

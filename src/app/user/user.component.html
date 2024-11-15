@@ -6,8 +6,23 @@
 
          <!-- property binding like this -->
          <img 
-            [src]="imagePathComputed()" 
-            [alt]="name"
+            [src]="imagePath" 
+            [alt]="avatar"
          />
         <span>{{ name }}</span>
     </button>
+
+    <!-- signal ways approarch -->
+      <!-- events use "(click)" -->
+      <!-- <button (click)="onSelectUser()"> -->
+        <!-- output user  -->
+         <!-- <img src="{{ selectedUser.avatar }}" /> -->
+
+         <!-- property binding like this -->
+         <!-- <img 
+            [src]="imagePathComputed()" 
+            [alt]="name()"
+         />
+        <span>{{ name() }}</span>
+    </button> -->
+</div>

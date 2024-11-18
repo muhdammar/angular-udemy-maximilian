@@ -1,4 +1,4 @@
-import { Component, Input, input, computed } from '@angular/core';
+import { Component, Input, input, computed, Output, EventEmitter } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 @Component({
@@ -14,6 +14,8 @@ export class UserComponent {
   @Input({required: true}) avatar!: String;
   @Input({required: true}) name!: String;
 
+  //@Output properties
+  @Output() select = new EventEmitter();
    /**
    * COMMENT THIS SINCE NO LONGER NEED to use signal, use old approach
    */

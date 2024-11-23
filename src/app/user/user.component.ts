@@ -10,9 +10,16 @@ import { DUMMY_USERS } from '../dummy-users';
 export class UserComponent {
   //this is @Input decorator
   //"avatar!" <--- this symbol was typescript features to allow the value is set outside this file
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) id!: string;
+  // @Input({ required: true }) avatar!: string;
+  // @Input({ required: true }) name!: string;
+  // @Input({ required: true }) id!: string;
+
+  //we can use object as well
+  @Input({ required: true }) user!:{
+    id: string,
+    avatar: string,
+    name: string
+  }
 
   //@Output properties, old approach, most project use this
   // @Output() select = new EventEmitter(); //type checking by default
@@ -49,7 +56,7 @@ export class UserComponent {
 
   //computed
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 
   //another way computed for signal
@@ -62,6 +69,6 @@ export class UserComponent {
      */
     // const randomIndex = Math.floor(Math.random()* DUMMY_USERS.length)
     // this.selectedUser = DUMMY_USERS[randomIndex];
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }

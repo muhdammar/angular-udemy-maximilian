@@ -15,7 +15,8 @@ export class UserComponent {
   @Input({ required: true }) id!: string;
 
   //@Output properties, old approach, most project use this
-  @Output() select = new EventEmitter();
+  // @Output() select = new EventEmitter(); //type checking by default
+  @Output() select = new EventEmitter<string>(); //for type safe!
 
   //another new sytax for output properties,
   // it same like above but more shortcut

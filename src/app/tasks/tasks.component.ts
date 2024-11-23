@@ -8,5 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  @Input({ required: true }) name!: string;
+  // ? this question mark means this variable might
+  // or not has been initialized or set
+  @Input() name?: string;
 }

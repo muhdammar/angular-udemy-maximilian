@@ -15,7 +15,11 @@ export class AppComponent {
   selectedUserId = "u1"
   get selectedUser(){
     //! put this to avoid "Possibile undefined" error
-    return this.users.find((user) => user.id == this.selectedUserId)!
+    // return this.users.find((user) => user.id == this.selectedUserId)!
+
+    //we can remove the ! and put in html page selectedUser?.name to handle the run time error
+    //becoz of accessing the undefined
+    return this.users.find((user) => user.id == this.selectedUserId)
   }
   onSelectUser(id:string){
     this.selectedUserId = id;

@@ -12,7 +12,8 @@ import { TasksComponent } from './tasks/tasks.component';
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUserId = "u1"
+  //its okay if it not set (we tell typescript lol)
+  selectedUserId? :string;
   get selectedUser(){
     //! put this to avoid "Possibile undefined" error
     // return this.users.find((user) => user.id == this.selectedUserId)!

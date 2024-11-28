@@ -3,10 +3,11 @@ import { UserComponent } from "./user/user.component";
 import { HeaderComponent } from './header/header.component';
 import { DUMMY_USERS } from './dummy-users';
 import { TasksComponent } from './tasks/tasks.component';
+// import { NgIf, NgFor } from '@angular/common'; //need to import ngfor and ngif if want to use that features (legacy)
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent,UserComponent, TasksComponent],
+  imports: [HeaderComponent,UserComponent, TasksComponent], //need to import NgIf and NgFor here if want to use that features (legacy)
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

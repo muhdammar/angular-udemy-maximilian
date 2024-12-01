@@ -1,6 +1,6 @@
 import { Component, Input, input, computed, Output, output, EventEmitter } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
-
+import { type User } from './user.model'
 //type vs interface
 //as per author, most of project use interface
 // type User = {
@@ -9,11 +9,11 @@ import { DUMMY_USERS } from '../dummy-users';
 //   name: string;
 // }
 
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
+// interface User {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// }
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 @Component({
   selector: 'app-user',
@@ -30,7 +30,7 @@ export class UserComponent {
 
   //we can use object as well
   @Input({ required: true }) user!: User;
-
+  @Input({ required: true }) selected!: boolean;
   //@Output properties, old approach, most project use this
   // @Output() select = new EventEmitter(); //type checking by default
   @Output() select = new EventEmitter<string>(); //for type safe!

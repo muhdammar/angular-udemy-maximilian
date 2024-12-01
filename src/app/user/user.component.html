@@ -1,6 +1,6 @@
 <div>
     <!-- events use "(click)" -->
-    <button (click)="onSelectUser()">
+    <button [class.active]="selected" (click)="onSelectUser()">
         <!-- output user  -->
          <!-- <img src="{{ selectedUser.avatar }}" /> -->
 

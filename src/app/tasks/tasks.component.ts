@@ -33,10 +33,6 @@ export class TasksComponent {
   get selectedUserTasks() {
     return this.taskService.getUserTasks(this.userId)
   }
-
-  onCompleteTask(id: string) {
-  }
-
   onStartAddTask() {
     this.isAddingTask = true;
   }

@@ -43,8 +43,4 @@ export class TasksComponent {
   onCancelAddTask() {
     this.isAddingTask = false;
   }
-  onAddTask(taskData: NewTaskData) {
-    this.isAddingTask = false;
-   
-  }
 }

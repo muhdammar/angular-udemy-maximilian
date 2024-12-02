@@ -1,7 +1,15 @@
-import { Component, Output, EventEmitter, signal } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  signal,
+  inject,
+  Input,
+} from '@angular/core';
 //form module is collection for directive and features
 import { FormsModule } from '@angular/forms';
 import { type NewTaskData } from '../task/task.model';
+import { TasksService } from '../tasks.service';
 @Component({
   selector: 'app-new-task',
   standalone: true,
@@ -10,12 +18,14 @@ import { type NewTaskData } from '../task/task.model';
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  @Input({ required: true }) userId!: string;
   @Output() cancel = new EventEmitter<void>();
-  @Output() add = new EventEmitter<NewTaskData>();
-  enteredTitle=''
-  enteredSummary=''
-  enteredDate=''
+  enteredTitle = '';
+  enteredSummary = '';
+  enteredDate = '';
 
+  //another way of dependency injection
+  private tasksService = inject(TasksService);
   //if want to use signal
   // enteredTitle=signal('')
   // enteredSummary=signal('')
@@ -24,11 +34,15 @@ export class NewTaskComponent {
   onCancel() {
     this.cancel.emit();
   }
-  onSubmit(){
-    this.add.emit({
-      title : this.enteredTitle,
-      summary : this.enteredTitle,
-      date : this.enteredTitle
-    })
+  onSubmit() {
+    this.tasksService.addTask(
+      {
+        title: this.enteredTitle,
+        summary: this.enteredTitle,
+        date: this.enteredTitle,
+      },
+      this.userId
+    );
+    this.cancel.emit();
   }
 }

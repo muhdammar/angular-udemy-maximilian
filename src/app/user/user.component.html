@@ -1,27 +1,24 @@
-<div>
+<app-card>
     <!-- events use "(click)" -->
     <button [class.active]="selected" (click)="onSelectUser()">
         <!-- output user  -->
-         <!-- <img src="{{ selectedUser.avatar }}" /> -->
+        <!-- <img src="{{ selectedUser.avatar }}" /> -->
 
-         <!-- property binding like this -->
-         <img 
-            [src]="imagePath" 
-            [alt]="user.avatar"
-         />
+        <!-- property binding like this -->
+        <img [src]="imagePath" [alt]="user.avatar" />
         <span>{{ user.name }}</span>
     </button>
     <!-- signal ways approarch -->
-      <!-- events use "(click)" -->
-      <!-- <button (click)="onSelectUser()"> -->
-        <!-- output user  -->
-         <!-- <img src="{{ selectedUser.avatar }}" /> -->
+    <!-- events use "(click)" -->
+    <!-- <button (click)="onSelectUser()"> -->
+    <!-- output user  -->
+    <!-- <img src="{{ selectedUser.avatar }}" /> -->
 
-         <!-- property binding like this -->
-         <!-- <img 
-            [src]="imagePathComputed()" 
-            [alt]="name()"
-         />
-        <span>{{ name() }}</span>
-    </button> -->
-</div>
+    <!-- property binding like this -->
+    <!-- <img 
+        [src]="imagePathComputed()" 
+        [alt]="name()"
+     />
+    <span>{{ name() }}</span>
+</button> -->
+</app-card>

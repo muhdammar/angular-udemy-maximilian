@@ -1,6 +1,7 @@
 import { Component, Input, input, computed, Output, output, EventEmitter } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 import { type User } from './user.model'
+import { CardComponent } from '../shared/card/card.component';
 //type vs interface
 //as per author, most of project use interface
 // type User = {
@@ -20,6 +21,7 @@ import { type User } from './user.model'
   standalone: true,
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
+  imports:[CardComponent]
 })
 export class UserComponent {
   //this is @Input decorator

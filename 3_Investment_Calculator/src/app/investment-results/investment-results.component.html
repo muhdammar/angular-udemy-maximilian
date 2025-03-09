@@ -1,0 +1,35 @@
+@if(!results){
+    <p class="center">Please enter some values and press "Calculate"</p>
+}
+@else {
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- need to use common module for ngFor directive -->
+            <!-- <tr *ngFor="let result of results; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ result.year}}</td>
+                <td>{{ result.valueEndOfYear}}</td>
+                <td>{{ result.totalInterest}}</td>
+                <td>{{ result.totalAmountInvested}}</td>
+            </tr> -->
+            @for (result of results; track result.year) {
+                <tr>
+                    <td>{{ result.year}}</td>
+                    <td>{{ result.valueEndOfYear}}</td>
+                    <td>{{ result.interest}}</td>
+                    <td>{{ result.totalInterest}}</td>
+                    <td>{{ result.totalAmountInvested}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

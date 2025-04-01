@@ -11,23 +11,6 @@ import { InvestmentResultsComponent } from "./investment-results/investment-resu
   imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent],
 })
 export class AppComponent {
-   //uncomment this line to not use signal
-  // resultsData?: {
-  //   year: number;
-  //   interest: number;
-  //   valueEndOfYear: number;
-  //   annualInvestment: number;
-  //   totalInterest: number;
-  //   totalAmountInvested: number;
-  // }[];
+ 
 
-  //lets use signal, latest angular feature
-  resultsData = signal<{
-      year: number;
-      interest: number;
-      valueEndOfYear: number;
-      annualInvestment: number;
-      totalInterest: number;
-      totalAmountInvested: number;
-    }[] | undefined>(undefined)
 }

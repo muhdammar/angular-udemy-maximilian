@@ -1,6 +1,8 @@
 <span>
-  <ng-content />
-  <ng-content select="otherSample" />
+  <!-- <ng-content /> normal ng content -->
+  <ng-content select="otherSample">
+    This is fall back content
+  </ng-content>    
 </span>
 <span class="icon">
   <ng-content select=".icon" />

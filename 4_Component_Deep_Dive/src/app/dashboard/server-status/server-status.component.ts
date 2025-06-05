@@ -8,5 +8,18 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrl: './server-status.component.css',
 })
 export class ServerStatusComponent {
-  currentStatus = 'offline';
+  currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+  constructor() {
+    setInterval(() => {
+      const rnd = Math.random();
+      if (rnd > 0.5) {
+        this.currentStatus = 'online';
+      } else if (rnd > 0.2) { // Simulating a server that is online
+        this.currentStatus = 'offline'; // Simulating a server that is under maintenance
+      }
+      else {
+        this.currentStatus = 'offline'; // Simulating a server that is offline
+      }
+    }, 5000);
+  }
 }

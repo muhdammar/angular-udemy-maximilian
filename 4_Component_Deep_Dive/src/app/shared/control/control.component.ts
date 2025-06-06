@@ -1,4 +1,4 @@
-import { Component, contentChild, ContentChild, ElementRef, Host, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
+import { afterNextRender, afterRender, Component, contentChild, ContentChild, ElementRef, Host, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -37,7 +37,17 @@ export class ControlComponent {
     console.log("On Init");
     console.log(this.control());
   }
+  constructor() {
+    // afterRender will trigger for every single component in application rendered
+    afterRender(() => {
+      console.log('After render - DOM is now available');
+    });
 
+    // Use afterNextRender to run code after the next rendering cycle
+    afterNextRender(() => {
+      console.log('After next render - runs after the next change detection cycle');
+    });
+  }
    ngAfterContentInit(): void {
     console.log("ngAfterContentInit");
 

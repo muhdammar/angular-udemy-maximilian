@@ -21,7 +21,7 @@ export class ControlComponent {
     // This method will be called when the host element is clicked
     console.log('Control clicked');
     console.log(this.el); // Access the host element using ElementRef
-    console.log(this.control()); // Access the input element inside the control component
+    console.log(this.control()  ); // Access the input element inside the control component
   }
 
 
@@ -33,4 +33,16 @@ export class ControlComponent {
   // Note: ContentChild is used to access elements projected into this component's template
   // In Angular 17+, you can use the `contentChild` function for required content child (signal way)
   private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input'); // Angular 17+ syntax for required content child (signal way)
+  ngOnInit() {
+    console.log("On Init");
+    console.log(this.control());
+  }
+
+   ngAfterContentInit(): void {
+    console.log("ngAfterContentInit");
+
+    //signal way to access the form element
+    console.log(this.control());
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Host, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
+import { Component, contentChild, ContentChild, ElementRef, Host, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -21,11 +21,16 @@ export class ControlComponent {
     // This method will be called when the host element is clicked
     console.log('Control clicked');
     console.log(this.el); // Access the host element using ElementRef
-    // You can perform any action here, like updating a property or emitting an event
+    console.log(this.control()); // Access the input element inside the control component
   }
 
 
   label = input.required<string>();
-
   private el = inject(ElementRef); // Inject the ElementRef to access the host element
+
+  //@ContentChild('input') private control?:ElementRef<HTMLInputElement  | HTMLTextAreaElement>; // Access the input element inside the control component
+
+  // Note: ContentChild is used to access elements projected into this component's template
+  // In Angular 17+, you can use the `contentChild` function for required content child (signal way)
+  private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input'); // Angular 17+ syntax for required content child (signal way)
 }

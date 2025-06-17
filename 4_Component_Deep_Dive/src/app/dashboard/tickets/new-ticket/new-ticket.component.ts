@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,ElementRef,OnInit,viewChild,ViewChild } from '@angular/core';
+import { AfterViewInit, Component,ElementRef,EventEmitter,OnInit,output,Output,viewChild,ViewChild } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from "../../../shared/control/control.component";
 import { FormsModule } from '@angular/forms';
@@ -16,9 +16,17 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   //@ViewChild(ButtonComponent) btn: ButtonComponent; // This is an alternative way to access the button component if needed
 
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form'); // angular 17+ syntax for required view child (signal way)
-  onSubmit(titleElement: HTMLInputElement) {
+  @Output() add = new EventEmitter<{title: string; text: string}>();
+  
+  // add = output<{title: string; text: string}>(); //This is the new way to access the form element using signals in Angular 17+
+  onSubmit(titleElement: HTMLInputElement, textElement: HTMLTextAreaElement) {
  
-    console.log('Title:', titleElement.value);
+    console.log('Title:', titleElement.value,'request:', textElement.value);
+    this.add.emit({
+      title: titleElement.value,
+      text: textElement.value 
+    })
+
     // Handle form submission logic here
     console.log('New ticket submitted');
     //this.form?.nativeElement.reset();

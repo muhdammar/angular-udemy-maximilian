@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent implements OnInit, AfterViewInit {
+  enteredTitle =""
+  enteredText =""
+
   //@ViewChild decorator
   //@ViewChild('form') form?: ElementRef<HTMLFormElement>; 
   //@ViewChild(ButtonComponent) btn: ButtonComponent; // This is an alternative way to access the button component if needed
@@ -19,20 +22,19 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   @Output() add = new EventEmitter<{title: string; text: string}>();
   
   // add = output<{title: string; text: string}>(); //This is the new way to access the form element using signals in Angular 17+
-  onSubmit(titleElement: HTMLInputElement, textElement: HTMLTextAreaElement) {
- 
-    console.log('Title:', titleElement.value,'request:', textElement.value);
+  onSubmit() {
     this.add.emit({
-      title: titleElement.value,
-      text: textElement.value 
+      title: this.enteredTitle,
+      text: this.enteredText
     })
-
+    this.enteredTitle = '';
+    this.enteredText = '';
     // Handle form submission logic here
     console.log('New ticket submitted');
     //this.form?.nativeElement.reset();
 
     //signal way to access the form element
-    this.form().nativeElement.reset();
+    //this.form().nativeElement.reset();
   }
 
   //when we use ViewChild decorator, we can't access the form element in ngOnInit 

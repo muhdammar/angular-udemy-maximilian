@@ -8,7 +8,13 @@
     Only visible to admins
   } -->
     <!-- <p *ngIf="isAdmin()">Only visible to admins</p> -->
-    <ng-template appAuth="admin">
+    <!-- using template way -->
+    <!-- <ng-template appAuth="admin">
       <p>Only visible to admins</p>
-    </ng-template>
+    </ng-template> -->
+
+    <!-- more shorter syntax using syntatic sugar way -->
+    <p *appAuth="'admin'" class="protected-content admin">Only visible to admins</p>
+    <p *appAuth="'user'" class="protected-content unauthenticated">Regular user should see this!</p>
+    <p *appAuth="'guest'" class="protected-content authenticated">Guest user should see this!</p>
 </main>

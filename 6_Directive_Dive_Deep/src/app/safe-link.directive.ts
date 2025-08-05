@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, ElementRef, inject, input } from "@angular/core";
 
 @Directive({
     selector: 'a[appSafeLink]', // This directive will be applied to anchor tags with the appSafeLink attribute
@@ -13,6 +13,7 @@ export class SafeLinkDirective {
                                            //<app-component appSafeLink queryParam="x">	Both the component and the directive get it
 
     queryParam = input('myapp-docs-link', {alias: 'appSafeLink'}); //alias is used to avoid conflict with other components           
+    private hostElementRef = inject<ElementRef<HTMLAnchorElement>>(ElementRef);
     constructor() {
         console.log('SafeLinkDirective initialized');
     }
@@ -21,8 +22,8 @@ export class SafeLinkDirective {
        //Prevent the default behavior of the anchor tag
        const wantToLeave = window.confirm('Are you sure you want to leave this page?');
        if (wantToLeave) {
-           const address = (event.target as HTMLAnchorElement).href;
-           (event.target as HTMLAnchorElement).href = address + '?from=' + this.queryParam();
+           const address = this.hostElementRef.nativeElement.href;
+           this.hostElementRef.nativeElement.href = address + '?from=' + this.queryParam();
            return;
        }    
 

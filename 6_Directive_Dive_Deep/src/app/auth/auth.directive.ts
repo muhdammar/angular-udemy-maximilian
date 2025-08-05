@@ -1,4 +1,4 @@
-import { Directive, effect, inject, input } from '@angular/core';
+import { Directive, effect, inject, input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Permission } from './auth.model';
 import { AuthService } from './auth.service';
 
@@ -9,13 +9,15 @@ import { AuthService } from './auth.service';
 export class AuthDirective {
   userType = input.required<Permission>({alias: 'appAuth'});
   private authService = inject(AuthService);
+  private templateRef = inject(TemplateRef); // Assuming you want to use this directive with a template reference
+  private viewContainerRef = inject(ViewContainerRef); // Inject ViewContainerRef to manage the view
   constructor() {
     effect(() => {
       if (this.authService.activePermission() === this.userType()) {
-        console.log("SHOW ELEMENT")
+        this.viewContainerRef.createEmbeddedView(this.templateRef); // Create the view if the condition matches
       }
       else {
-         console.log("DO NOT SHOW ELEMENT")
+        this.viewContainerRef.clear(); // Clear the view if the condition does not match
       }
     })
    }

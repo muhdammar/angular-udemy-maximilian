@@ -8,6 +8,7 @@
     Only visible to admins
   } -->
     <!-- <p *ngIf="isAdmin()">Only visible to admins</p> -->
-
-    <p appAuth="admin">Only visible to admins</p>
+    <ng-template appAuth="admin">
+      <p>Only visible to admins</p>
+    </ng-template>
 </main>

@@ -1,11 +1,13 @@
 import { Directive, ElementRef, inject, input } from "@angular/core";
+import { LogDirective } from "./log.directive";
 
 @Directive({
     selector: 'a[appSafeLink]', // This directive will be applied to anchor tags with the appSafeLink attribute
     standalone: true, //only available in Angular 16+
     host: {
         '(click)': 'onConfirmLeavePage($event)'
-    }
+    },
+    hostDirectives: [LogDirective]
 }) 
 export class SafeLinkDirective {
     // queryParam = input('myapp-docs-link'); //default value, if other component have this name too,

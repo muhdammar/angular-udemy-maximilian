@@ -23,6 +23,13 @@ export class AppComponent {
   ];
 
   onReset(index: number) {
-    this.historicTemperatures[index] = 18;
+    //this.historicTemperatures[index] = 18;
+
+    // copy array to make the changes, because angular will not detect the changes 
+    // if we don't do this,
+    // but got some sorting issue which not cover in this tutorial
+    const newTemps = [...this.historicTemperatures]; 
+    newTemps[index] = 18;
+    this.historicTemperatures = newTemps;
   }
 }

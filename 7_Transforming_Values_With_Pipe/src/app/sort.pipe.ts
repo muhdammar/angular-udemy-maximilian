@@ -2,7 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'sort',
-  standalone: true
+  standalone: true,
+  pure: false //angular disable the caching, handle will be care 
+              //impacting performance
 })
 export class SortPipe implements PipeTransform {
 

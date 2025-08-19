@@ -1,6 +1,8 @@
 import { Injectable, signal } from "@angular/core";
 import { Task, TaskStatus } from "./task.model";
 
+//more better way
+//this injector more optimized for tree-shaking
 @Injectable({
     providedIn: 'root' // This makes the service available throughout the application
 })

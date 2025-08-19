@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core";
-import { Task } from "./task.model";
+import { Task, TaskStatus } from "./task.model";
 
 @Injectable({
     providedIn: 'root' // This makes the service available throughout the application
@@ -18,5 +18,16 @@ addTask(taskData: { title: string; description: string }) {
       ...oldTasks,
       newTask
     ]);
+  }
+
+  updateTaskStatus(taskId: string, newStatus: TaskStatus) {
+    this.tasks.update(oldTasks => {
+      const taskIndex = oldTasks.findIndex(task => task.id === taskId);
+      if (taskIndex === -1) return oldTasks; // Task not found, return unchanged array
+      const updatedTask = { ...oldTasks[taskIndex], status: newStatus };
+      const updatedTasks = [...oldTasks];
+      updatedTasks[taskIndex] = updatedTask;
+      return updatedTasks;
+    });
   }
 }

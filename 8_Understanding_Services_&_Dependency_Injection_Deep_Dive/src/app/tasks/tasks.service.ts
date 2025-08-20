@@ -1,5 +1,6 @@
-import { Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { Task, TaskStatus } from "./task.model";
+import { LoggingService } from "../logging.service";
 
 //more better way
 //this injector more optimized for tree-shaking
@@ -8,6 +9,7 @@ import { Task, TaskStatus } from "./task.model";
 })
 export class TasksService{
   private tasks = signal<Task[]>([]);
+  private loggingService = inject(LoggingService);
   allTasks = this.tasks.asReadonly();
 
 addTask(taskData: { title: string; description: string }) {
@@ -20,6 +22,7 @@ addTask(taskData: { title: string; description: string }) {
       ...oldTasks,
       newTask
     ]);
+    this.loggingService.log(`Task added: ${newTask.title}`);
   }
 
   updateTaskStatus(taskId: string, newStatus: TaskStatus) {
@@ -31,5 +34,6 @@ addTask(taskData: { title: string; description: string }) {
       updatedTasks[taskIndex] = updatedTask;
       return updatedTasks;
     });
+    this.loggingService.log(`Task status updated: ${taskId} to ${newStatus}`);
   }
 }

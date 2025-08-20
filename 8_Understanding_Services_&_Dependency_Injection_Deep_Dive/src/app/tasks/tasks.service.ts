@@ -3,9 +3,9 @@ import { Task, TaskStatus } from "./task.model";
 
 //more better way
 //this injector more optimized for tree-shaking
-@Injectable({
-    providedIn: 'root' // This makes the service available throughout the application
-})
+// @Injectable({
+//     providedIn: 'root' // This makes the service available throughout the application
+// })
 export class TasksService{
   private tasks = signal<Task[]>([]);
   allTasks = this.tasks.asReadonly();

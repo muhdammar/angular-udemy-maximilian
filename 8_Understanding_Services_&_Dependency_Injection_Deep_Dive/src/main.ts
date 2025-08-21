@@ -1,6 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 
 import { AppComponent } from './app/app.component';
+import { Inject, InjectionToken } from '@angular/core';
+import { TasksService } from './app/tasks/tasks.service';
 // import { TasksService } from './app/tasks/tasks.service';
 
 //it will be reference for study note
@@ -15,3 +17,12 @@ import { AppComponent } from './app/app.component';
 // }).catch((err) => console.error(err));
 
 bootstrapApplication(AppComponent).catch((err) => console.error(err));
+
+//custom DI Injection & Providers to inject the service
+export const TaskServiceToken = new InjectionToken<TasksService>('tasks-service-token');
+
+bootstrapApplication(AppComponent, {
+    providers: [
+       { provide: TaskServiceToken, useClass: TasksService }
+    ]
+}).catch((err) => console.error(err));

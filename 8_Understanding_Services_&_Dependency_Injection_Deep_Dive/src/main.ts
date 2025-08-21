@@ -16,7 +16,7 @@ import { TasksService } from './app/tasks/tasks.service';
 //     ]
 // }).catch((err) => console.error(err));
 
-bootstrapApplication(AppComponent).catch((err) => console.error(err));
+// bootstrapApplication(AppComponent).catch((err) => console.error(err));
 
 //custom DI Injection & Providers to inject the service
 export const TaskServiceToken = new InjectionToken<TasksService>('tasks-service-token');

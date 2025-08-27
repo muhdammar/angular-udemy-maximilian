@@ -5,17 +5,11 @@ import { BehaviorSubject } from 'rxjs'
 })
 export class MessagesService {
   //RxJS variables name
-  messages$ = new BehaviorSubject<string[]>([]);
-  private messages: string[] = []
-  get allMessages() {
-    return [...this.messages]
-  }
+  private messages = signal<string[]>([]);
+  allMessages = this.messages.asReadonly();
 
 
   addMessage(message: string) {
-    this.messages = [...this.messages, message];
-    // Emit the new messages array
-    // use spread for immutability
-    this.messages$.next([...this.messages]);
+    this.messages.update((oldMessages) => [...oldMessages, message]);
   }
 }
